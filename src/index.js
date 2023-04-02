@@ -5,7 +5,7 @@ class App extends React.Component {
     constructor(props) {
       super(props);
       this.state = {
-        value: "coconut",
+        value: "",
         searchTerm: "",
         countries: [],
         filteredCountries: []
@@ -65,12 +65,13 @@ class App extends React.Component {
             />
           </label>
           <br />
-          <CountryCard countryName={value} />
+
+          {value !== '' ? <CountryCard countryName={value} /> : null}
         </>
       );
     }
   }
 
-  
+
   
   ReactDOM.render(<App />, document.querySelector('#root'));
