@@ -19,6 +19,15 @@ class App extends React.Component {
       fetch("https://restcountries.com/v3.1/all?fields=name")
         .then(response => response.json())
         .then(data => {
+            const sortedData = data.sort((a, b) => {
+                if (a.name.common < b.name.common) {
+                  return -1;
+                }
+                if (a.name.common > b.name.common) {
+                  return 1;
+                }
+                return 0;
+              });
           this.setState({
             countries: data,
             filteredCountries: data
@@ -64,8 +73,10 @@ class App extends React.Component {
               onChange={this.handleSearch}
             />
           </label>
+
           <br />
 
+                Si el valor es distino de una cadena vacia lo voy a mostrar si no no muestro 
           {value !== '' ? <CountryCard countryName={value} /> : null}
         </>
       );

@@ -20,11 +20,12 @@ export function CountryCard(props) {
       <p>Region: {country.region}</p>
       <p>Subregion: {country.subregion}</p>
       
+     
+      {country.flags && (
       <p>
-        <img src={country.flags.png} alt = {"Bandera de un pais"} />
-     </p>
-
-   
+        <img src={country.flags.png} alt={`Bandera de ${country.name?.common}`} />
+      </p>
+    )}
 
 
     </div>
