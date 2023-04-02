@@ -64,14 +64,18 @@ class App extends React.Component {
   handleChange(event) {
     const selectedCountry = event.target.value;
     this.setState({ value: selectedCountry });
-    alert("Your favorite flavor is: " + selectedCountry);
+    //alert("Your favorite flavor is: " + selectedCountry);
   }
 
   handleSearch(event) {
+    debugger;
     const searchTerm = event.target.value;
     const filteredCountries = this.state.countries.filter((country) =>
       country.name.common.toLowerCase().includes(searchTerm.toLowerCase())
     );
+    if (filteredCountries.length === 1) {
+      this.setState({ value: filteredCountries[0].name.common });
+    }
     this.setState({ searchTerm, filteredCountries });
   }
 
@@ -110,7 +114,7 @@ class App extends React.Component {
       </>
     );
   }
-  
+
 }
 
 ReactDOM.render(<App />, document.querySelector("#root"));
