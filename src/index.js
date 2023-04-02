@@ -100,12 +100,12 @@ class App extends React.Component {
         </label>
                 
         <br />
-        
+        {regiones.length > 0 && <RegionCard regions={regiones} />}  
         <br />    
         {/*     Si el valor es distino de una cadena vacia lo voy a mostrar si no no muestro */}
         {value !== "" ? <CountryCard countryName={value} /> : null}
         
-        {regiones.length > 0 && <RegionCard regions={regiones} />}       
+             
            
       </>
     );

@@ -28,8 +28,17 @@ export function RegionCard(props) {
       <h1>{value}</h1>
 
       {value !== '' ? (
-        <h5>Population density: {props.regions.find((region) => region.region === value).densidadPoblacional}</h5>
+        <>
+          <h5>Population density: {props.regions.find((region) => region.region === value).densidadPoblacional} personas/</h5>
+          <ul>
+            {props.regions.find((region) => region.region === value).countries.map((country) => (
+              <li key={country}>{country.name.common}</li>
+            ))}
+          </ul>
+        </>
       ) : null}
+
+
     </div>
   );
 }
