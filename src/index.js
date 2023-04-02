@@ -9,6 +9,7 @@ class App extends React.Component {
       value: "",
       searchTerm: "",
       countries: [],
+      regiones: [],
       filteredCountries: [],
     };
 
@@ -29,9 +30,24 @@ class App extends React.Component {
           }
           return 0;
         });
+        const regions = data.reduce((acc, country) => {
+          const regionIndex = acc.findIndex((item) => item.region === country.region);
+          if (regionIndex !== -1) {
+            acc[regionIndex].population += country.population;
+            acc[regionIndex].countries.push(country);
+          } else {
+            acc.push({
+              region: country.region,
+              population: country.population,
+              countries: [country],
+            });
+          }
+          return acc;
+        }, []);
         this.setState({
           countries: data,
           filteredCountries: data,
+          regiones: regions,
         });
       });
   }
@@ -51,7 +67,7 @@ class App extends React.Component {
   }
 
   render() {
-    const { filteredCountries, value } = this.state;
+    const { filteredCountries, value , regiones} = this.state;
     return (
       <>
         <label>
@@ -80,7 +96,7 @@ class App extends React.Component {
         {/*     Si el valor es distino de una cadena vacia lo voy a mostrar si no no muestro */}
         {value !== "" ? <CountryCard countryName={value} /> : null}
 
-          <RegionCard value = {filteredCountries}/>    
+          <RegionCard value = {regiones}/>    
       </>
     );
   }
