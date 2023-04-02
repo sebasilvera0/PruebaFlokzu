@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { CountryCard } from "./CountryCard";
 import { RegionCard } from "./RegionCard";
+import { CabezalPrincipal } from "./CabezalPrincipal";
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -75,41 +76,41 @@ class App extends React.Component {
   }
 
   render() {
-    const { filteredCountries, value , regiones} = this.state;
+    const { filteredCountries, value, regiones } = this.state;
     return (
       <>
-        <label>
-          Pick your favorite flavor:
-          <select value={value} onChange={this.handleChange}>
-            {filteredCountries.map((country) => (
-              <option key={country.name.common} value={country.name.common}>
-                {country.name.common}
-              </option>
-            ))}
-          </select>
-        </label>
-        <br />
-        <br />
-        <label>
-          Search for a country:
-          <input
-            type="text"
-            value={this.state.searchTerm}
-            onChange={this.handleSearch}
-          />
-        </label>
-                
-        <br />
-        {regiones.length > 0 && <RegionCard regions={regiones} />}  
-        <br />    
-        {/*     Si el valor es distino de una cadena vacia lo voy a mostrar si no no muestro */}
-        {value !== "" ? <CountryCard countryName={value} /> : null}
-        
-             
-           
+        <div style={{ backgroundColor: "lightblue", padding: "20px" }}>
+          <CabezalPrincipal />
+          <div style={{ display: "flex", flexDirection: "column" }}>
+            <label>
+              <span style={{ marginRight: "10px" }}>Pick your favorite Country:</span>
+              <select value={value} onChange={this.handleChange}>
+                {filteredCountries.map((country) => (
+                  <option key={country.name.common} value={country.name.common}>
+                    {country.name.common}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <br />
+            <label>
+              <span style={{ marginRight: "10px" }}>Search for a country:</span>
+              <input
+                type="text"
+                value={this.state.searchTerm}
+                onChange={this.handleSearch}
+              />
+            </label>
+            <br />
+            {regiones.length > 0 && <RegionCard regions={regiones} />}
+            <br />
+            {value !== "" ? <CountryCard countryName={value} /> : null}
+          </div>
+        </div>
       </>
     );
   }
+  
 }
 
 ReactDOM.render(<App />, document.querySelector("#root"));
