@@ -28,7 +28,7 @@ export function RegionCard(props) {
       <h1>{value}</h1>
 
       {value !== '' ? (
-        <h2>{props.regions.find((region) => region.region === value).densidadPoblacional}</h2>
+        <h5>Population density: {props.regions.find((region) => region.region === value).densidadPoblacional}</h5>
       ) : null}
     </div>
   );

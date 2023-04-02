@@ -36,7 +36,10 @@ class App extends React.Component {
           if (regionIndex !== -1) {
             acc[regionIndex].population += country.population;
             acc[regionIndex].area += parseFloat(country.area);
-            acc[regionIndex].densidadPoblacional +=   acc[regionIndex].population/ acc[regionIndex].area;
+            acc[regionIndex].densidadPoblacional =   acc[regionIndex].population/ acc[regionIndex].area;
+            acc[regionIndex].densidadPoblacional = Number(acc[regionIndex].densidadPoblacional.toFixed(2));
+            
+            
             acc[regionIndex].countries.push(country);
           } else {
             acc.push({
