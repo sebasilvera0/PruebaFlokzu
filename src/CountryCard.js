@@ -19,11 +19,16 @@ export function CountryCard(props) {
       <p>Population: {country.population}</p>
       <p>Region: {country.region}</p>
       <p>Subregion: {country.subregion}</p>
+      <p>Timezones: {country.timezones}</p>
       
-     
-      {country.flags && (
+      {country.languages && ( <p>
+        Idiomas oficiales: {Object.values(country.languages).join(", ")}
+      </p>
+      )}
+      
+       {country.flags && (
       <p>
-        <img src={country.flags.png} alt={`Bandera de ${country.name?.common}`} />
+        <img src={country.flags.png} alt="Bandera" />
       </p>
     )}
 

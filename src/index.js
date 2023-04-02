@@ -76,8 +76,8 @@ class App extends React.Component {
 
           <br />
 
-                Si el valor es distino de una cadena vacia lo voy a mostrar si no no muestro 
-          {value !== '' ? <CountryCard countryName={value} /> : null}
+  {/*     Si el valor es distino de una cadena vacia lo voy a mostrar si no no muestro */}  
+         {value !== '' ? <CountryCard countryName={value} /> : null}
         </>
       );
     }
