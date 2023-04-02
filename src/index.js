@@ -18,7 +18,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    fetch("https://restcountries.com/v3.1/all?fields=name,region,population")
+    fetch("https://restcountries.com/v3.1/all?fields=name,region,population,area")
       .then((response) => response.json())
       .then((data) => {
         const sortedData = data.sort((a, b) => {
@@ -35,11 +35,15 @@ class App extends React.Component {
           const regionIndex = acc.findIndex((item) => item.region === country.region);
           if (regionIndex !== -1) {
             acc[regionIndex].population += country.population;
+            acc[regionIndex].area += parseFloat(country.area);
+            acc[regionIndex].densidadPoblacional +=   acc[regionIndex].population/ acc[regionIndex].area;
             acc[regionIndex].countries.push(country);
           } else {
             acc.push({
               region: country.region,
               population: country.population,
+              area: parseFloat(country.area),
+              densidadPoblacional: country.population/ parseFloat(country.area),
               countries: [country],
             });
           }
@@ -93,11 +97,13 @@ class App extends React.Component {
         </label>
                 
         <br />
-
+        
+        <br />    
         {/*     Si el valor es distino de una cadena vacia lo voy a mostrar si no no muestro */}
         {value !== "" ? <CountryCard countryName={value} /> : null}
-
-         {regiones.length > 0 && <RegionCard regions={regiones} />}   
+        
+        {regiones.length > 0 && <RegionCard regions={regiones} />}       
+           
       </>
     );
   }

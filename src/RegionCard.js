@@ -1,7 +1,15 @@
 import React, { useState, useEffect } from "react";
 
 export function RegionCard(props) {
+  const [regions, setRegions] = useState([]);
   const [value, setValue] = useState("");
+
+  function handleChange(event) {
+    const selectedRegion = event.target.value;
+    console.log("Mi selectedRegion", selectedRegion);
+    setValue(selectedRegion);
+    alert("Your favorite region  is: " + selectedRegion);
+  }
 
   console.log("Mis PropiedadesRecibidas", props);
 
@@ -9,19 +17,21 @@ export function RegionCard(props) {
     <div>
       <label>
         Pick your favorite Region:
-        <select value={value} onChange={(e) => setValue(e.target.value)}>
-          {props.regions ? (
-            props.regions.map((region) => (
-              <option key={region.region} value={region.region}>
-                {region.region}
-              </option>
-            ))
-          ) : (
-            <option value="">Loading...</option>
-          )}
+        <select value={value} onChange={handleChange}>
+          {props.regions.map((region) => (
+            <option key={region.region} value={region.region}>
+              {region.region}
+            </option>
+          ))}
         </select>
       </label>
-      <h1>Hola</h1>
+      <h1>{value}</h1>
+
+      {value !== '' ? (
+        <h2>{props.regions.find((region) => region.region === value).densidadPoblacional}</h2>
+      ) : null}
     </div>
   );
 }
+
+export default RegionCard;
