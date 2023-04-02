@@ -30,6 +30,7 @@ class App extends React.Component {
           }
           return 0;
         });
+
         const regions = data.reduce((acc, country) => {
           const regionIndex = acc.findIndex((item) => item.region === country.region);
           if (regionIndex !== -1) {
@@ -96,7 +97,7 @@ class App extends React.Component {
         {/*     Si el valor es distino de una cadena vacia lo voy a mostrar si no no muestro */}
         {value !== "" ? <CountryCard countryName={value} /> : null}
 
-          <RegionCard value = {regiones}/>    
+         {regiones.length > 0 && <RegionCard regions={regiones} />}   
       </>
     );
   }
