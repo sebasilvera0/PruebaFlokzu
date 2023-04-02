@@ -14,32 +14,38 @@ export function RegionCard(props) {
   console.log("Mis PropiedadesRecibidas", props);
 
   return (
-    <div>
-      <label>
-        Pick your favorite Region:
-        <select value={value} onChange={handleChange}>
-          {props.regions.map((region) => (
-            <option key={region.region} value={region.region}>
-              {region.region}
-            </option>
-          ))}
-        </select>
-      </label>
-      <h1>{value}</h1>
-
-      {value !== '' ? (
-        <>
-          <h5>Population density: {props.regions.find((region) => region.region === value).densidadPoblacional} personas/</h5>
-          <ul>
-            {props.regions.find((region) => region.region === value).countries.map((country) => (
+    <div style={{ border: "2px solid red", padding: "20px" }}>
+    <label>
+      Pick your favorite Region:
+      <select value={value} onChange={handleChange}>
+        {props.regions.map((region) => (
+          <option key={region.region} value={region.region}>
+            {region.region}
+          </option>
+        ))}
+      </select>
+    </label>
+  
+    {value !== "" ? (
+      <>
+        <div style={{ borderBottom: "2px solid black", paddingBottom: "10px" }}>
+          <h1 style={{ textAlign: "center", textDecoration: "underline" }}>{value}</h1>
+          <h5 style={{ textAlign: "center" }}>
+            Population density:{" "}
+            {props.regions.find((region) => region.region === value).densidadPoblacional}{" "}
+            personas/
+          </h5>
+        </div>
+        <ul>
+          {props.regions
+            .find((region) => region.region === value)
+            .countries.map((country) => (
               <li key={country}>{country.name.common}</li>
             ))}
-          </ul>
-        </>
-      ) : null}
-
-
-    </div>
+        </ul>
+      </>
+    ) : null}
+  </div>
   );
 }
 

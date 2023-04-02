@@ -12,22 +12,26 @@ export function CountryCard(props) {
   }, [props.countryName]);
 
   return (
-    <div>
-      <h1>{country.name?.common}</h1>
-      <p>Capital: {country.capital?.[0]}</p>
-      <p>Area: {country.area}</p>
-      <p>Population: {country.population}</p>
-      <p>Region: {country.region}</p>
-      <p>Subregion: {country.subregion}</p>
-      <p>Timezones: {country.timezones}</p>
+    <div style={{ 
+      border: '2px solid red',
+      padding: '20px',
+      textAlign: 'center',
+    }}>
+      <h1 style={{ fontWeight: 'bold' }}>{country.name?.common}</h1>
+      <p style={{ fontWeight: 'bold' }}>Capital: {country.capital?.[0]}</p>
+      <p style={{ fontWeight: 'bold' }}>Area: {country.area}</p>
+      <p style={{ fontWeight: 'bold' }}>Population: {country.population}</p>
+      <p style={{ fontWeight: 'bold' }}>Region: {country.region}</p>
+      <p style={{ fontWeight: 'bold' }}>Subregion: {country.subregion}</p>
+      <p style={{ fontWeight: 'bold' }}>Timezones: {country.timezones}</p>
       
       {country.languages && (
-        <p>Idiomas oficiales: {Object.values(country.languages).join(", ")}</p>
+        <p style={{ fontWeight: 'bold' }}>Idiomas oficiales: {Object.values(country.languages).join(", ")}</p>
       )}
-
+    
       {country.flags && (
-        <p>
-          <img src={country.flags.png} alt="Bandera" />
+        <p style={{ border: '1px solid black', display: 'inline-block' }}>
+          <img src={country.flags.png} alt="Bandera" style={{ width: '200px' }} />
         </p>
       )}
     </div>
