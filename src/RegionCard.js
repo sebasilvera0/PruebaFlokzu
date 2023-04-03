@@ -33,7 +33,7 @@ export function RegionCard(props) {
           <h5 style={{ textAlign: "center" }}>
             Population density:{" "}
             {props.regions.find((region) => region.region === value).densidadPoblacional}{" "}
-            personas/
+            personas/porKM2
           </h5>
         </div>
         <ul>
